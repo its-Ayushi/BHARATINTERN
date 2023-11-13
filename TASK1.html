@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Project Management Tool</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        .project {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .task {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Social Media Project Management Tool</h1>
+    </header>
+
+    <section id="projects"></section>
+
+    <script>
+        const projectsData = [
+            { name: "Social Media Framework", description: "Creating a framework for social media sites.",
+              tasks: [{ name: "Implement User Registration", assignee: "Ayushi", dueDate: "2023-12-01" },
+                      { name: "Design Dashboard", assignee: "Ayushi", dueDate: "2023-12-10" }] },
+            { name: "File Sharing", description: "Implement file sharing functionality within the social media framework.",
+              tasks: [{ name: "File Upload Feature", assignee: "Ayushi", dueDate: "2023-12-15" },
+                      { name: "Version Control", assignee: "Ayushi", dueDate: "2023-12-20" }] }
+        ];
+
+        function createTaskElement(task) {
+            const taskElement = document.createElement("div");
+            taskElement.classList.add("task");
+            taskElement.innerHTML = `<h3>Task: ${task.name}</h3><p>Assignee: ${task.assignee}</p><p>Due Date: ${task.dueDate}</p>`;
+            return taskElement;
+        }
+
+        function createProjectElement(project) {
+            const projectElement = document.createElement("div");
+            projectElement.classList.add("project");
+            projectElement.innerHTML = `<h2>Project: ${project.name}</h2><p>Description: ${project.description}</p>`;
+
+            project.tasks.forEach(task => {
+                const taskElement = createTaskElement(task);
+                projectElement.appendChild(taskElement);
+            });
+
+            const addTaskButton = document.createElement("button");
+            addTaskButton.classList.add("button");
+            addTaskButton.textContent = "Add Task";
+            projectElement.appendChild(addTaskButton);
+
+            return projectElement;
+        }
+
+        function initializeProjects() {
+            const projectsSection = document.getElementById("projects");
+
+            projectsData.forEach(projectData => {
+                const projectElement = createProjectElement(projectData);
+                projectsSection.appendChild(projectElement);
+            });
+        }
+
+        initializeProjects();
+    </script>
+
+</body>
+</html>
